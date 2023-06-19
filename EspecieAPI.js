@@ -14,7 +14,7 @@ class EspecieAPI{
 
         await fetch(
 
-            "http://localhost:3000/crear_especie",
+            "http://localhost:3001/crear_especie",
             {
             //metodo post es loq  espera el backend
                 method:"POST",
@@ -27,6 +27,25 @@ class EspecieAPI{
 
 
     }
+async listarEspecie(){
+let especies=await fetch(
+    "http://localhost:3001/listar_especie"
+)
+especies=await especies.json();
+
+const miTabla= document.getElementById("tabla_especies");
+especies.forEach(
+    (especie)=>{
+        const fila = miTabla.insertRow();
+        fila.insertCell().innerText=especie.id_especie;
+        fila.insertCell().innerText=especie.nombre;
+        fila.insertCell().innerText=especie.clasificacion;
+        fila.insertCell().innerText=especie.esperanza_vida;
+        fila.insertCell().innerText=especie.peso_promedio;
+
+    }
+);
+}
 
 }
 //Convertir esta clase en un módulo
